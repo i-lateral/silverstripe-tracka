@@ -1,4 +1,4 @@
-*Silverstripe Tracka Module*
+## Silverstripe Tracka Module ##
 
 This is a module for Silverstripe that will add the ability to create task tracking, time tracking, quotes and invoicing.
 
@@ -6,5 +6,5 @@ This data will be loaded into customisable templates for easy viewing by clients
 
 This codebase will be used to in the up and comming "tracka" online quoting and invoicing tool.
 
-*Created By*
+## Created By ##
 Mo: http://www.i-lateral.com/
