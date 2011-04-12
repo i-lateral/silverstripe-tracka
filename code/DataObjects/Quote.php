@@ -4,7 +4,7 @@
  *
  * @author morven
  */
-class Task extends DataObject {
-
+class Quote extends DataObject{
+    //put your code here
 }
 ?>
