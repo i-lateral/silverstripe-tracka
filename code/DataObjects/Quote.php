@@ -7,12 +7,12 @@
  */
 class Quote extends DataObject{
     public static $db = array(
-        'Hours'         => 'Decimal',
-        'Description'   => 'HTMLText'
+        "Hours"         => "Decimal",
+        "Description"   => "HTMLText"
     );
 
     public static $has_one = array(
-        'Parent'  => 'Task'
+        "Parent"  => "Task"
     );
 }
 ?>

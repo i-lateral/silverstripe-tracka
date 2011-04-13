@@ -6,16 +6,16 @@
  */
 class Project extends DataObject {
     public static $db = array(
-        'Title'         => 'Varchar',
-        'Description'   => 'HTMLText'
+        "Title"         => "Varchar",
+        "Description"   => "HTMLText"
     );
 
     public static $has_one = array(
-        'Icon'  => 'Image'
+        "Icon"  => "Image"
     );
 
     public static $has_many = array(
-        'Tasks' => 'Task'
+        "Tasks" => "Task"
     );
 }
 ?>

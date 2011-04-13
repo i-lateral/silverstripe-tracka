@@ -7,12 +7,12 @@
  */
 class Expense extends DataObject {
     public static $db = array(
-        'Cost'          => 'Decimal',
-        'Description'   => 'HTMLText'
+        "Cost"          => "Decimal",
+        "Description"   => "HTMLText"
     );
 
     public static $has_one = array(
-        'Parent'    => 'Task'
+        "Parent"    => "Task"
     );
 }
 ?>
