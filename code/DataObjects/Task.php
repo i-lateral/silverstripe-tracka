@@ -45,7 +45,8 @@ class Task extends DataObject {
     );
     
     public static $casting = array( 
-        "TotalWork"     => "Decimal" 
+        "TotalWork"     => "Decimal",
+        "TotalCosts"     => "Decimal"
     );
 
     public static $summary_fields = array(
@@ -53,8 +54,9 @@ class Task extends DataObject {
         'Priority'      => 'Priority',
         'Progress'      => 'Progress',
         'Parent.Title'  => 'Project',
-        'TimeEstimate'  => 'Estimate',
-        'TotalWork'     => 'Work Done'
+        'TimeEstimate'  => 'Estimate (h)',
+        'TotalWork'     => 'Work Done (h)',
+        'TotalCosts'    => 'Costs (£)'
     );
     
     public function canCreate($member = null) {
@@ -110,8 +112,8 @@ class Task extends DataObject {
         
         if($this->ID) {
             // Deal with adding relationships managed by DOM
-            $work_manager = new DataObjectManager($this, 'Work', 'Work', null, "ParentID = {$this->ID}");
-            $expense_manager = new DataObjectManager($this, 'Expenses', 'Expense', null, "ParentID = {$this->ID}");
+            $work_manager = new DataObjectManager($this, 'Work', 'Work', null, "ParentID = '{$this->ID}'");
+            $expense_manager = new DataObjectManager($this, 'Expenses', 'Expense', null, "ParentID = '{$this->ID}'");
 
             $fields->addFieldToTab('Root.Work', $work_manager);
             $fields->addFieldToTab('Root.Costs', $expense_manager);
@@ -129,6 +131,17 @@ class Task extends DataObject {
         }
         
         return $hours_worked;
+    }
+    
+    public function getTotalCosts() {
+        $costs = 0;
+        
+        foreach($this->Expenses() as $expense) {
+            if($expense->Cost)
+                $costs += $expense->Cost;
+        }
+        
+        return $costs;        
     }
 } 
 ?>

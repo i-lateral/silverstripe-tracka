@@ -41,10 +41,9 @@ class Work extends DataObject{
     public function getCMSFields() {
         $fields = parent::getCMSFields();
         
+        $fields->addFieldToTab('Root.Description', new TextareaField('Description',null,4));
         $fields->addFieldToTab('Root.Main', new NumericField('Hours'));
         $fields->addFieldToTab('Root.Main', new DatePickerField('Date'));
-        
-        $fields->addFieldToTab('Root.Description', new TextareaField('Description',null,10));
         
         return $fields;
     }

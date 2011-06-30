@@ -8,7 +8,8 @@
 class Expense extends DataObject {
     public static $db = array(
         "Cost"          => "Decimal",
-        "Description"   => "HTMLText"
+        "Description"   => "HTMLText",
+        "Date"          => "Date"
     );
 
     public static $has_one = array(
@@ -35,6 +36,16 @@ class Expense extends DataObject {
     
     public function canEdit($member = null) {
         return true;
+    }
+    
+    public function getCMSFields() {
+        $fields = parent::getCMSFields();
+        
+        $fields->addFieldToTab('Root.Main', new TextareaField('Description',null,4));
+        $fields->addFieldToTab('Root.Main', new NumericField('Cost','Cost (£)'));
+        $fields->addFieldToTab('Root.Main', new DatePickerField('Date'));
+        
+        return $fields;
     }
 }
 ?>
