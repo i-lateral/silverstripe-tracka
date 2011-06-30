@@ -1,13 +1,14 @@
 <?php
 /**
- * An expense is an object representing an external cost to a project (eg: travel,
- * software purchases, etc)
+ * Quotes are objects that allow you to track how much time you estimate a
+ * user will spend on a task
  *
  * @author morven
  */
-class Expense extends DataObject {
+class Work extends DataObject{
     public static $db = array(
-        "Cost"          => "Decimal",
+        "Hours"         => "Decimal",
+        "Date"          => 'Date',
         "Description"   => "HTMLText"
     );
 
@@ -17,7 +18,7 @@ class Expense extends DataObject {
     );
     
     public static $summary_fields = array(
-        'Cost',
+        'Hours',
         'Description'
     );
     
@@ -35,6 +36,17 @@ class Expense extends DataObject {
     
     public function canEdit($member = null) {
         return true;
+    }
+    
+    public function getCMSFields() {
+        $fields = parent::getCMSFields();
+        
+        $fields->addFieldToTab('Root.Main', new NumericField('Hours'));
+        $fields->addFieldToTab('Root.Main', new DatePickerField('Date'));
+        
+        $fields->addFieldToTab('Root.Description', new TextareaField('Description',null,10));
+        
+        return $fields;
     }
 }
 ?>

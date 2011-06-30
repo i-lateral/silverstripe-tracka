@@ -17,5 +17,26 @@ class Project extends DataObject {
     public static $has_many = array(
         "Tasks" => "Task"
     );
+    
+    public static $summary_fields = array(
+        'ID'    => 'ID #',
+        'Title' => 'Name'
+    );
+    
+    public function canCreate($member = null) {
+        return true;
+    }
+    
+    public function canDelete($member = null) {
+        return true;
+    }
+    
+    public function canView($member = null) {
+        return true;
+    }
+    
+    public function canEdit($member = null) {
+        return true;
+    }
 }
 ?>
