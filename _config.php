@@ -9,4 +9,7 @@ HtmlEditorConfig::get('taskMinimal')->setOptions(array(
     'content_css'       => BASE_URL . "/themes/" . SSViewer::current_theme() . "/css/editor.css",
     'valid_elements'    => "@[id|class|style|title],-strong/-b[class],-em/-i[class],-u[class],#p[id|dir|class|align|style],-ol[class],-ul[class],-li[class],br,-div[id|dir|class|align|style],-span[class|align|style],dd[id|class|title|dir],dl[id|class|title|dir],dt[id|class|title|dir],@[id,style,class]"
 ));
+
+// Add overide for member class
+DataObject::add_extension('Member', 'TrackaMember');
 ?>
