@@ -5,6 +5,7 @@
  * A project can contain many tasks, and many members. Projects are 
  *
  * @author morven
+ * @package tracka
  */
 class Project extends DataObject {
     public static $db = array(
@@ -13,15 +14,16 @@ class Project extends DataObject {
     );
 
     public static $has_one = array(
-        "Icon"  => "Image"
+        "Icon"          => "Image"
     );
 
     public static $has_many = array(
-        "Tasks" => "Task"
+        "Tasks"         => "Task",
+        "Milestones"    => 'Milestone'
     );
     
     public static $many_many = array(
-        "Members"   => "Member"
+        "Members"       => "Member"
     );
     
     public static $casting = array(
@@ -29,7 +31,7 @@ class Project extends DataObject {
     );
     
     public static $summary_fields = array(
-        'Title' => 'Name',
+        'Title'             => 'Name',
         'MembersAsString'   => 'Team Members'
     );
     
@@ -49,6 +51,12 @@ class Project extends DataObject {
         return true;
     }
     
+    /**
+     * Compiles all associated members into a comma seperated list and returns
+     * them as a string.
+     * 
+     * @return type string
+     */
     public function getMembersAsString() {
         $output = "";
         
@@ -66,6 +74,7 @@ class Project extends DataObject {
         $fields->removeByName("Main");
         $fields->removeByName("Members");
         $fields->removeByName("Tasks");
+        $fields->removeByName("Milestones");
         
         $fields->addFieldToTab('Root.Details', new TextField('Title'));
         $fields->addFieldToTab('Root.Details', new TextareaField('Description',null,5));
@@ -82,7 +91,18 @@ class Project extends DataObject {
                 'Email' => 'Email'
             )
         );
+        
+        $milestoneField = new DataObjectManager(
+            $this,
+            'Milestones',
+            'Milestone',
+            null,
+            null,
+            "ParentID = '{$this->ID}'"
+        );
+        
         $fields->addFieldToTab('Root.Team',$memberField);
+        $fields->addFieldToTab('Root.Milestones',$milestoneField);
         
         return $fields;
     }

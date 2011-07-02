@@ -4,6 +4,7 @@
  * software purchases, etc)
  *
  * @author morven
+ * @package tracka
  */
 class Expense extends DataObject {
     public static $db = array(

@@ -22,6 +22,7 @@
  *             cover things like mileage, software licenses, etc.
  * 
  * @author morven
+ * @package tracka
  */
 class Task extends DataObject {
     public static $db = array(
@@ -36,7 +37,8 @@ class Task extends DataObject {
     public static $has_one = array(
         "Parent"        => "Project",
         "Asignee"       => "Member",
-        "Creator"       => "Member"
+        "Creator"       => "Member",
+        "Milestone"     => "Milestone"
     );
 
     public static $has_many = array(
@@ -84,17 +86,15 @@ class Task extends DataObject {
         $fields->removeByName("Expenses");
         
         $projects = DataObject::get('Project')->toDropDownMap(
-            $index = 'ID',
-            $titleField = 'Title',
-            $emptyString = 'Select Project',
-            $sort = 'Title ASC'
+            'ID',
+            'Title',
+            'Select Project'
         );
         
         $members = DataObject::get('Member')->toDropDownMap(
-            $index = 'ID',
-            $titleField = 'FirstName',
-            $emptyString = 'Select Person',
-            $sort = 'Title ASC'
+            'ID',
+            'FirstName',
+            'Select Person'
         );
         
         // Add fields to the 'Details' tab
@@ -119,9 +119,25 @@ class Task extends DataObject {
             $fields->addFieldToTab('Root.Costs', $expense_manager);
         }
         
+        if($this->ParentID) {
+            $milestones = DataObject::get('Milestone',"ParentID = {$this->ParentID}")->toDropDownMap(
+                'ID',
+                'Title',
+                'Select Milestone'
+            );
+            
+            $fields->addFieldToTab('Root.Workflow', new DropdownField('MilestoneID', 'Milestone', $milestones));
+        }
+        
         return $fields;
     }
     
+    /**
+     * Combines all time logged against this task into a single int which can
+     * then be returned for reports.
+     * 
+     * @return type int
+     */
     public function getTotalWork() {
         $hours_worked = 0;
         
@@ -133,6 +149,12 @@ class Task extends DataObject {
         return $hours_worked;
     }
     
+    /**
+     * Combines all costs logged against this task into a single in which can
+     * then be returned for reports.
+     * 
+     * @return type int
+     */
     public function getTotalCosts() {
         $costs = 0;
         

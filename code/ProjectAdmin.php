@@ -4,6 +4,7 @@
  * within the CMS
  *
  * @author morven
+ * @package tracka
  */
 class ProjectAdmin extends ModelAdmin {
     static $url_segment = 'projects';
@@ -12,7 +13,7 @@ class ProjectAdmin extends ModelAdmin {
 
     static $managed_models = array(
         'Task',
-        'Project'
+        'Project',
     );
 }
 ?>

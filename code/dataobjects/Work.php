@@ -4,6 +4,7 @@
  * user will spend on a task
  *
  * @author morven
+ * @package tracka
  */
 class Work extends DataObject{
     public static $db = array(

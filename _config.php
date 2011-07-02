@@ -12,4 +12,7 @@ HtmlEditorConfig::get('taskMinimal')->setOptions(array(
 
 // Add overide for member class
 DataObject::add_extension('Member', 'TrackaMember');
+
+// Sorting options for DataObjectManager
+SortableDataObject::add_sortable_class('Milestone');
 ?>
