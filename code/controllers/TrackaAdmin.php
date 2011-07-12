@@ -28,6 +28,13 @@ class TrackaAdmin extends LeftAndMain {
     static $menu_title = 'Tracka';
     static $menu_priority = 60;
  
+    public static $allowed_actions = array(
+        'show',
+        'edit',
+        'add',
+        'delete'
+    );
+    
     /**
      * Initialisation method called before accessing any functionality that
      * BulkLoaderAdmin has to offer
@@ -48,6 +55,16 @@ class TrackaAdmin extends LeftAndMain {
                 new FormAction('go')
             )
         );
+    }
+    
+    /**
+     * Return a list of project items that are to be rendered in the left hand
+     * nav
+     * 
+     * @return type DataObjectSet
+     */
+    public function getItems() {
+        return DataObject::get('Project');
     }
 }
 
