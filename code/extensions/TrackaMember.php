@@ -6,7 +6,7 @@
  *
  * @author morven
  */
-class TrackaMember extends DataObjectDecorator {
+class TrackaMember extends DataExtension {
     public function extraStatics() {
         return array(
             'db' => array(
