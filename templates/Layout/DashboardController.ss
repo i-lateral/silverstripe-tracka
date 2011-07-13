@@ -1,5 +1,5 @@
 <div class="typography">
     <div id="Content">
-        <h1>Projects</h1>
+        <h1>Dashboard</h1>
     </div>
 </div>

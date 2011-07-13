@@ -10,6 +10,7 @@ class TaskController extends Controller {
     }
     
     public function index() {
+        return $this->renderWith(array('TaskController','Page'));
         
     }
 }

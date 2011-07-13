@@ -17,7 +17,8 @@ DataObject::add_extension('Member', 'TrackaMember');
 //SortableDataObject::add_sortable_class('Milestone');
 
 Director::addRules(50, array(
+    'tracka/dashboard'  => 'DashboardController',
     'tracka/projects'   => 'ProjectController',
-    'tracka/task'       => 'TaskController'
+    'tracka/tasks'       => 'TaskController'
 ));
 ?>
