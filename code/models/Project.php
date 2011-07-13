@@ -14,7 +14,8 @@ class Project extends DataObject {
     );
 
     public static $has_one = array(
-        "Icon"          => "Image"
+        "Icon"          => "Image",
+        "Category"      => "ProjectCategory"
     );
 
     public static $has_many = array(

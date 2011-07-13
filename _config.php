@@ -14,5 +14,10 @@ HtmlEditorConfig::get('taskMinimal')->setOptions(array(
 DataObject::add_extension('Member', 'TrackaMember');
 
 // Sorting options for DataObjectManager
-SortableDataObject::add_sortable_class('Milestone');
+//SortableDataObject::add_sortable_class('Milestone');
+
+Director::addRules(50, array(
+    'tracka/projects'   => 'ProjectController',
+    'tracka/task'       => 'TaskController'
+));
 ?>
