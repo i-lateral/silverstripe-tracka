@@ -108,4 +108,3 @@ class Project extends DataObject {
         return $fields;
     }
 }
-?>

@@ -42,7 +42,7 @@ class Task extends DataObject {
     );
 
     public static $has_many = array(
-        "Work"          => "Work",
+        "Work"          => "WorkDone",
         "Expenses"      => "Expense"
     );
     
@@ -165,5 +165,4 @@ class Task extends DataObject {
         
         return $costs;        
     }
-} 
-?>
+}

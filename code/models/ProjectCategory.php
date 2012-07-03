@@ -23,5 +23,3 @@ class ProjectCategory extends DataObject {
     }
 
 }
-
-?>

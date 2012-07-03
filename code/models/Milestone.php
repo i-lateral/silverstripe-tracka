@@ -39,5 +39,3 @@ class Milestone extends DataObject {
     }
 
 }
-
-?>
