@@ -7,7 +7,7 @@
  * @author morven
  */
 class TrackaMember extends DataExtension {
-    public function extraStatics() {
+    public function extraStatics($class = null, $extension = null) {
         return array(
             'db' => array(
                 'Nickname' => 'Varchar(100)',
@@ -33,7 +33,7 @@ class TrackaMember extends DataExtension {
 
     }
 
-    function updateCMSFields(FieldSet &$fields) {
+    function updateCMSFields(FieldList $fields) {
         $fields->insertBefore(new TextField('Nickname'),'FirstName');
         $fields->addFieldToTab('Root.Main', new ImageField('Avatar', null, null, null, null, "Profiles"));
     }

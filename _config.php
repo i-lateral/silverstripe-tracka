@@ -11,14 +11,4 @@ HtmlEditorConfig::get('taskMinimal')->setOptions(array(
 ));
 
 // Add overide for member class
-DataObject::add_extension('Member', 'TrackaMember');
-
-// Sorting options for DataObjectManager
-//SortableDataObject::add_sortable_class('Milestone');
-
-Director::addRules(50, array(
-    'tracka/dashboard'  => 'DashboardController',
-    'tracka/projects'   => 'ProjectController',
-    'tracka/tasks'       => 'TaskController'
-));
-?>
+Object::add_extension('Member', 'TrackaMember');
